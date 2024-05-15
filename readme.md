@@ -58,7 +58,7 @@ Límite de creación de 100 elementos:
 
 Metodos permitidos en el endpoint, sin headers se seguridad:
 
-![Alt text](image.png)
+![Alt text](assets/image6.png)
 
 Para la ejeucion del proyecto, solo basta con ejecutar lo siguiente una vez descargado el repositorio en su equipo.
 
