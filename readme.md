@@ -83,21 +83,21 @@ Encuentro varias observaciones como:
 
 Debido a esto mi solucion es llevarlo a tener mas seguridad, donde se implemento lo siguiente:
 
-Seguridad simetrica
-Criterios de aceptacion en contraseña
-Autenticación y Autorización jwt (HS512) firmado.
-Encriptación de Datos en repoto y transito bcrypt (hashing basado en Blowfish) y cryptography.fernet algoritmo AES (Advanced Encryption Standard) en modo de operación CBC (Cipher Block Chaining) con una longitud de clave de 128 bits.
-Control de Acceso y Limitación de Solicitudes
-Seguridad de la Capa de Transporte (TLS/SSL)
-Cabeceras de Seguridad HTTP
-Sanitización de datos
-Validacion de datos
-Control de errores y sus codigos
-Auditoria con logs
-variables de entorno
-documentacion mediantes swagger no UI
-CORS
-Datos encriptados en BD
+    Seguridad simetrica
+    Criterios de aceptacion en contraseña
+    Autenticación y Autorización jwt (HS512) firmado.
+    Encriptación de Datos en repoto y transito bcrypt (hashing basado en Blowfish) y cryptography.fernet algoritmo AES (Advanced Encryption Standard) en modo de operación CBC (Cipher Block Chaining) con una longitud de clave de 128 bits.
+    Control de Acceso y Limitación de Solicitudes
+    Seguridad de la Capa de Transporte (TLS/SSL)
+    Cabeceras de Seguridad HTTP
+    Sanitización de datos
+    Validacion de datos
+    Control de errores y sus codigos
+    Auditoria con logs
+    variables de entorno
+    documentacion mediantes swagger no UI
+    CORS
+    Datos encriptados en BD
 
 El problema percibido es que por falta de informacion no se puede evidenciar quien si observara los datos en crudo y quien no.
 
