@@ -2,7 +2,7 @@
 curl --location --request POST 'https://127.0.0.1:3000/v1/register' \
 --header 'Content-Type: application/json' \
 --data '{
-    "username": "stevenhdzx10",
+    "username": "stevenhdzx18",
     "password": "Admin*ñ1"
 }'
 
@@ -10,21 +10,21 @@ curl --location --request POST 'https://127.0.0.1:3000/v1/register' \
 curl --location --request POST 'https://127.0.0.1:3000/v1/login' \
 --header 'Content-Type: application/json' \
 --data '{
-    "username": "stevenhdzx10",
+    "username": "stevenhdzx18",
     "password": "Admin*ñ1"
 }'
 
 ### user info
 curl --location --request POST 'https://127.0.0.1:3000/v1/information/external/one' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNTc5NTI3NiwianRpIjoiNDcyOTMzMDYtZWFmZS00N2QwLWE2ZDItMzliMjE3MTllYzFlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InN0ZXZlbmhkengxMCIsIm5iZiI6MTcxNTc5NTI3NiwiY3NyZiI6IjllYmNhZmM3LWFmNTctNDBjNS05ZGJlLTdmZjljOGZlODViNSIsImV4cCI6MTcxNTc5NTc3Nn0.67ZTUuLx_d5odWjsoQ2RuS-jD9FaH0HJ-8zcRUNoVf3kF4A-oMUS_87hjnknxngio3BJ6FR1ADcwyYJKVBHQjw' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNTgxMjc0MywianRpIjoiNTY3NTc5ZGQtMGJiMy00OWVlLThiMGItYTE0NTc5MzAxZjhlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InN0ZXZlbmhkengxOCIsIm5iZiI6MTcxNTgxMjc0MywiY3NyZiI6IjU4MDVkOTMxLWZhMzEtNDRiYy1hYWMzLTY5ZWFhMDQ5ODM2MiIsImV4cCI6MTcxNTgxMzI0M30.yyLZ8JNsIU79RO8MaGO4MAudLVwQ1iLcUL2hk7iz-eou6860_M-ZWmy-XQ8lLAQCk-S4Mthiz3ruqhFN04OkjQ' \
 --data '{
     "id": 2
 }'
 
 ### users info
 curl --location --request POST 'https://127.0.0.1:3000/v1/information/external' \
---header 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNTc5MjQ5NCwianRpIjoiMDQ0MmQwZTEtNDgxYy00OTMxLTljZWEtYTMwMzBhMTg2ODBmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InN0ZXZlbmhkeng0IiwibmJmIjoxNzE1NzkyNDk0LCJjc3JmIjoiMDBlYTkzMzUtOTBkYi00MDZiLTkwYTktYjE4OTkzMTc2Njk4IiwiZXhwIjoxNzE1NzkyOTk0fQ.InGl6v-I7nUmrlB1TU0ekY9bCMnHMFDi1IIHvsD0TgH0MKiIPUFhGWvN3oeleuRtiqOKilFoAfK0y6VMCJMYQQ'
+--header 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNTgxMjU1NCwianRpIjoiNTk0NTYyNTctMjA5ZC00YzQ4LWIyNDktYzlhNmE5N2NiMzNkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InN0ZXZlbmhkengxOCIsIm5iZiI6MTcxNTgxMjU1NCwiY3NyZiI6ImNlMjU3OTdlLTFjZmUtNDhhMS04Yjk3LTc3MGU0YjBkNmI4MiIsImV4cCI6MTcxNTgxMzA1NH0.5cRwkw1gKXDQkVqZ1rLLFGBaNMOP4BTTHPUnMyIikFvccN_zuztD6jcASZWzGMaWVlbFaCKUZbTAjToc8gZzjg'
 
 ### logout
 curl --location --request POST 'https://127.0.0.1:3000/v1/logout' \

@@ -27,6 +27,7 @@ def create_table_users(cursor):
                         username VARCHAR(255),
                         password VARCHAR(255),
                         crypto VARCHAR(255),
+                        role VARCHAR(255),
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)''')
     except mysql.connector.Error as err:
         return err
@@ -40,11 +41,34 @@ def insert_data_users(cursor, data):
         result = cursor.fetchone()
         if result[0] == 0:
             cursor.execute('''INSERT INTO users
-                            (username, password, crypto)
-                            VALUES (%s, %s, %s)''', (data['username'], data['password'], data['crypto']))
+                            (username, password, crypto, role)
+                            VALUES (%s, %s, %s, %s)''', (data['username'], data['password'], data['crypto'], 'user'))
             return 'User created'
         else:
             return 'The user not available'
+
+    except mysql.connector.Error as err:
+        return err
+
+
+def user_default(cursor, data_list):
+    try:
+        for data in data_list:
+            username = data[0]
+            password = data[1]
+            crypto = data[2]
+            role = data[3]
+
+            cursor.execute(
+                '''SELECT COUNT(*) FROM users WHERE username = %s''', (username,))
+            user_count = cursor.fetchone()[0]
+
+            if user_count == 0:
+                cursor.execute('''INSERT INTO users (username, password, crypto, role) VALUES (%s, %s, %s, %s)''', (
+                    username, password, crypto, role))
+
+        inserted_users = cursor.fetchall()
+        return cursor, inserted_users
     except mysql.connector.Error as err:
         return err
 
@@ -86,7 +110,7 @@ def create_table_login(cursor):
 def create_table_information_external(cursor):
     try:
         cursor.execute('''CREATE TABLE IF NOT EXISTS information_external
-                        (id INT AUTO_INCREMENT PRIMARY KEY,
+                        (id INT PRIMARY KEY ,
                         fec_alta VARCHAR(255),
                         user_name VARCHAR(255),
                         codigo_zip VARCHAR(255),
@@ -103,7 +127,7 @@ def create_table_information_external(cursor):
                         auto_modelo TEXT,
                         auto_tipo TEXT,
                         auto_color TEXT,
-                        cantidad_compras_realizadas INT,
+                        cantidad_compras_realizadas TEXT,
                         avatar TEXT,
                         fec_birthday VARCHAR(255))''')
     except mysql.connector.Error as err:
@@ -129,12 +153,22 @@ def insert_data_external(cursor, encrypted_data):
     try:
         for user in encrypted_data:
             cursor.execute('''INSERT INTO information_external
-                            (fec_alta, user_name, codigo_zip, credit_card_num, credit_card_ccv,
+                            (id, fec_alta, user_name, codigo_zip, credit_card_num, credit_card_ccv,
                             cuenta_numero, direccion, geo_latitud, geo_longitud, color_favorito,
                             foto_dni, ip, auto, auto_modelo, auto_tipo, auto_color,
                             cantidad_compras_realizadas, avatar, fec_birthday)
-                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''',
-                           (user["fec_alta"], user["user_name"], user["codigo_zip"],
+                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                            ON DUPLICATE KEY UPDATE
+                            fec_alta = VALUES(fec_alta), user_name = VALUES(user_name),
+                            codigo_zip = VALUES(codigo_zip), credit_card_num = VALUES(credit_card_num),
+                            credit_card_ccv = VALUES(credit_card_ccv), cuenta_numero = VALUES(cuenta_numero),
+                            direccion = VALUES(direccion), geo_latitud = VALUES(geo_latitud),
+                            geo_longitud = VALUES(geo_longitud), color_favorito = VALUES(color_favorito),
+                            foto_dni = VALUES(foto_dni), ip = VALUES(ip), auto = VALUES(auto),
+                            auto_modelo = VALUES(auto_modelo), auto_tipo = VALUES(auto_tipo),
+                            auto_color = VALUES(auto_color), cantidad_compras_realizadas = VALUES(cantidad_compras_realizadas),
+                            avatar = VALUES(avatar), fec_birthday = VALUES(fec_birthday)''',
+                           (user["id"], user["fec_alta"], user["user_name"], user["codigo_zip"],
                             user["credit_card_num"], user["credit_card_ccv"], user["cuenta_numero"],
                             user["direccion"], user["geo_latitud"], user["geo_longitud"],
                             user["color_favorito"], user["foto_dni"], user["ip"],

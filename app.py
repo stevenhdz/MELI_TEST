@@ -1,6 +1,6 @@
-from database.database import connect_to_database, create_table_information_external, list_information_external_one, list_user_login_by_token, insert_data_external, list_information_external, list_crypto_login, create_table_login, insert_data_login, create_table_users, insert_data_users, list_user
+from database.database import connect_to_database, create_table_information_external, list_information_external_one, list_user_login_by_token, insert_data_external, list_information_external, list_crypto_login, create_table_login, insert_data_login, user_default, create_table_users, insert_data_users, list_user
 from utils.encryption import criteria_password, hash_password, generate_key, encrypt_data, decrypt_data, encrypt_password
-from config import JWT_SECRET_KEY, PASS, USERNAME, URL_CLIENT_EXTERNAL, SERVER_PORT, SERVER_HOST
+from config import JWT_SECRET_KEY, PASS, USERNAME, URL_CLIENT_EXTERNAL, SERVER_PORT, SERVER_HOST, ROLESADMIN, ROLESRHH
 import requests
 from flask_swagger import swagger
 from flask import Flask, jsonify, request
@@ -45,6 +45,18 @@ current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 PAYLOAD_SIZE_LIMIT = 1024  # 1KB
 
 
+HIDDEN_FIELDS = [
+    "credit_card_num",
+    "credit_card_ccv",
+    "cuenta_numero",
+    "foto_dni",
+    "geo_latitud",
+    "geo_longitud",
+    "ip",
+    "fec_alta",
+]
+
+
 SENSIBLE_FIELDS = [
     "credit_card_num",
     "credit_card_ccv",
@@ -52,7 +64,27 @@ SENSIBLE_FIELDS = [
     "foto_dni",
     "geo_latitud",
     "geo_longitud",
-    "ip"
+    "ip",
+    "fec_alta",
+]
+
+
+SENSIBLE_FIELDS_USER = [
+    "user_name",
+    "codigo_zip",
+    "direccion",
+    "color_favorito",
+    "auto",
+    "auto_modelo",
+    "auto_tipo",
+    "auto_color",
+    "cantidad_compras_realizadas",
+    "avatar",
+    "fec_birthday"
+]
+
+SENSIBLE_FIELDS_RRHH = [
+    "fec_alta",
 ]
 
 
@@ -79,10 +111,9 @@ def information_external_hidden_data():
         app.logger.info(f'{current_time} - Start')
         response = requests.get(URL_CLIENT_EXTERNAL)
         data = response.json()
-        encrypted_data = encrypt_data(data, SENSIBLE_FIELDS, key)
+        encrypted_data = encrypt_data(data, HIDDEN_FIELDS, key)
         conn = connect_to_database()
         cursor = conn.cursor()
-        create_table_information_external(cursor)
         insert_data_external(cursor, encrypted_data)
         conn.commit()
         conn.close()
@@ -133,7 +164,6 @@ def register():
         description: Internal server error
     """
     try:
-        information_external_hidden_data()
         app.logger.info(f'{current_time} - Register')
 
         if request.content_length is not None and request.content_length > PAYLOAD_SIZE_LIMIT:
@@ -147,7 +177,6 @@ def register():
 
         conn = connect_to_database()
         cursor = conn.cursor()
-        create_table_users(cursor)
         insert = insert_data_users(
             cursor, {'username': username, 'password': encrypt_password(password, key), 'crypto': key})
         conn.commit()
@@ -253,13 +282,20 @@ def get_users():
         users = list_information_external(cursor)
         get_token = get_jwt_identity()
         token = list_user_login_by_token(cursor, get_token)
-
         if not token:
             return jsonify({'error': 'Invalid token'}), 401
 
         crypto = list_crypto_login(cursor, token[1])
+
+        if crypto[4] == 'admin':
+            fields = SENSIBLE_FIELDS
+        elif crypto[4] == 'rrhh':
+            fields = SENSIBLE_FIELDS_RRHH
+        else:
+            fields = SENSIBLE_FIELDS_USER
+
         conn.close()
-        decrypted_users = decrypt_data(users, SENSIBLE_FIELDS, crypto[3])
+        decrypted_users = decrypt_data(users, fields, crypto[3])
         return jsonify(decrypted_users), 200
     except Exception as e:
         app.logger.error(f'{current_time} - {str(e)}')
@@ -311,8 +347,16 @@ def get_one_user():
         if not token:
             return jsonify({'error': 'Invalid token'}), 401
         crypto = list_crypto_login(cursor, token[1])
+
+        if crypto[4] == 'admin':
+            fields = SENSIBLE_FIELDS
+        elif crypto[4] == 'rrhh':
+            fields = SENSIBLE_FIELDS_RRHH
+        else:
+            fields = SENSIBLE_FIELDS_USER
+
         conn.close()
-        decrypted_user = decrypt_data(user, SENSIBLE_FIELDS, crypto[3])
+        decrypted_user = decrypt_data(user, fields, crypto[3])
         return jsonify(decrypted_user), 200
     except Exception as e:
         app.logger.error(f'{current_time} - {str(e)}')
@@ -390,7 +434,26 @@ def add_security_headers(response):
     return response
 
 
+def user_defaults():
+    conn = connect_to_database()
+    cursor = conn.cursor()
+
+    create_table_users(cursor)
+    create_table_information_external(cursor)
+    information_external_hidden_data()
+
+    data = [
+        (ROLESADMIN, encrypt_password(ROLESADMIN, key), key, ROLESADMIN),
+        (ROLESRHH, encrypt_password(ROLESRHH, key), key, ROLESRHH),
+    ]
+
+    user_default(cursor, data)
+    conn.commit()
+    conn.close()
+
+
 if __name__ == "__main__":
-    app.debug = True
+    app.logger.info(f'{current_time} - Starting app')
+    user_defaults()
     app.run(host=SERVER_HOST, port=SERVER_PORT, ssl_context=(
         "./cert/cert.pem", "./cert/key.pem"))
