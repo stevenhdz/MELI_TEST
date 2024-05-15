@@ -1,36 +1,3 @@
-```sh {"id":"01HXFK772Y1JSCTRWKHTRBMBPR"}
-python3 -m venv [name]
-```
-
-```sh {"id":"01HXFK6EGJDNRR2KN37HQDB9BE"}
-Scripts\activate
-```
-
-```sh {"id":"01HXFK65VYBAW1T691XVJ7NQTQ"}
-pip install -r ./requirements.txt
-```
-
-```sh {"id":"01HXFPKKM6AT4NBD8T785Z0Y9F"}
-docker build -t myapp .
-```
-
-```sh {"id":"01HXFPKVCJXH432NTJ1XTG06GH"}
-docker run -p 3000:3000 myapp
-
-```
-
-```sh {"id":"01HXHPSH7W6TRVTYY6943MRHTG"}
-openssl genrsa -out key.pem 4096
-```
-
-```sh {"id":"01HXHPSPBC907BPB81FTEMXEFJ"}
-openssl req -new -key key.pem -out csr.pem -sha512
-```
-
-```sh {"id":"01HXHPSX13PNX7V18WVZE9M0SF"}
-openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem -sha512
-```
-
 La unica ejecucion que se debe hacer para levantar el docker con las imagenes:
 
 ```sh {"id":"01HXHPV3FMD95F4KRHHCWDSJGP"}
@@ -119,3 +86,39 @@ cifrado sobre...
 El otro problema percibido es que todos los datos mencionados tienden a ser sensibles por ende debe ser encriptados en su mayoria, por lo tanto no hay datos normales que puedan ser mostrados sin problema.
 
 Analisis de riesgo en la solucion planteada.
+
+
+
+Para la creacion proyecto de forma local se utilizaron los siquientes comandos:
+
+```sh {"id":"01HXFK772Y1JSCTRWKHTRBMBPR"}
+python3 -m venv [name]
+```
+
+```sh {"id":"01HXFK6EGJDNRR2KN37HQDB9BE"}
+Scripts\activate
+```
+
+```sh {"id":"01HXFK65VYBAW1T691XVJ7NQTQ"}
+pip install -r ./requirements.txt
+```
+
+```sh {"id":"01HXFPKKM6AT4NBD8T785Z0Y9F"}
+docker build -t myapp .
+```
+
+```sh {"id":"01HXFPKVCJXH432NTJ1XTG06GH"}
+docker run -p 3000:3000 myapp
+```
+
+```sh {"id":"01HXHPSH7W6TRVTYY6943MRHTG"}
+openssl genrsa -out key.pem 4096
+```
+
+```sh {"id":"01HXHPSPBC907BPB81FTEMXEFJ"}
+openssl req -new -key key.pem -out csr.pem -sha512
+```
+
+```sh {"id":"01HXHPSX13PNX7V18WVZE9M0SF"}
+openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem -sha512
+```
