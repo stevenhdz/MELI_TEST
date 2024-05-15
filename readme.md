@@ -47,7 +47,6 @@ Descripcion realizada, supuestos, problemas, soluciones, evidencias png:
 
 Inicialmente en la api suministrada:
 
-
 Encuentro varias observaciones como:
 
 Divulgación de datos sensibles
@@ -55,6 +54,8 @@ Exposición a ataques de fuerza bruta
 Violación de la privacidad del usuario
 Riesgo de exposición de datos personales
 Vulnerabilidades de seguridad
+
+![Alt text](assets/arquitecture.png)
 
 Debido a esto mi solucion es llevarlo a tener mas seguridad, donde se implemento lo siguiente:
 
@@ -75,7 +76,6 @@ CORS
 Datos encriptados en BD
 
 El problema percibido es que por falta de informacion no se puede evidenciar quien si observara los datos en crudo y quien no.
-
 
 SENSIBLES:
 
@@ -106,15 +106,7 @@ SEMIPRIVADOS:
     fec_alta: Fecha de alta (podría variar dependiendo del contexto).
     id: Identificación.
 
-
 Segun la suma de informacion se le da una clasificacion a los datos.
-
-
-
-
-
-
-
 
 va adapatado al core del negocio los roles
 
@@ -122,14 +114,8 @@ pero se debe tener en cuenta lo siguiente:
 
         Para fines pracricos no es viable que al momento del registro, se clasificaque el role administrativo lo cual puede comprometer toda la aplicacion para esto se debe hacer un filtro de verificacion
 
-
-cifrado sobre... 
-
-
+cifrado sobre...
 
 El otro problema percibido es que todos los datos mencionados tienden a ser sensibles por ende debe ser encriptados en su mayoria, por lo tanto no hay datos normales que puedan ser mostrados sin problema.
-
-
-
 
 Analisis de riesgo en la solucion planteada.
