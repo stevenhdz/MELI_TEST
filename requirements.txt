@@ -1,0 +1,11 @@
+requests
+cryptography
+python-dotenv
+mysql-connector-python
+flask
+flask-cors
+pyopenssl
+flask_jwt_extended
+Flask-Limiter
+bcrypt
+flask_swagger
