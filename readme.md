@@ -1,4 +1,4 @@
-La unica ejecucion que se debe hacer para levantar el docker con las imagenes:
+Para la ejeucion del proyecto, solo basta con ejecutar lo siguiente una vez descargado el repositorio en su equipo.
 
 ```sh {"id":"01HXHPV3FMD95F4KRHHCWDSJGP"}
 docker-compose up
