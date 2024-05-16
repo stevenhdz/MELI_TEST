@@ -67,6 +67,13 @@ docker-compose up
 
 ```
 
+
+Una vez que las imágenes de Docker hayan sido cargadas, el usuario podrá hacer uso del documento guía de consumo de las APIs. Es importante tener en cuenta que el archivo "data.http" contiene datos ficticios, creados exclusivamente con propósitos prácticos de laboratorio.
+
+Además, se debe asegurar que las imágenes de Docker estén disponibles en una ubicación adecuada y accesible para su utilización en el entorno correspondiente.
+
+![Alt text](assets/image8.png)
+
 ### **Arquitectura de la solucion implementada**
 
 ![Alt text](assets/image7.png)

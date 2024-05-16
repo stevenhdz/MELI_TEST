@@ -1,4 +1,4 @@
-### register
+### register [queda con el role user]
 curl --location --request POST 'https://127.0.0.1:3000/v1/register' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -6,7 +6,7 @@ curl --location --request POST 'https://127.0.0.1:3000/v1/register' \
     "password": "Admin*ñ1"
 }'
 
-### auth
+### auth [username admin - password admin, username rrhh, password rrhh]
 curl --location --request POST 'https://127.0.0.1:3000/v1/login' \
 --header 'Content-Type: application/json' \
 --data '{
