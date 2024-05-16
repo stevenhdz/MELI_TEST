@@ -106,7 +106,7 @@ En términos prácticos, resulta inviable clasificar un rol administrativo duran
 Con fines de laboratorio, se han definido internamente roles específicos (administrador, usuario, recursos humanos) para categorizar los datos que se mostrarán, ademas de los certificados debido a que tendria que contratar una entidad que me los genere oficialmente.
 
 
-# Observaciones en la seguridad del Endpoint
+# Observaciones en la seguridad del Endpoint suministrado en el challenge
 
 El endpoint presenta varias observaciones de seguridad que deben abordarse para garantizar la protección de los datos y la privacidad de los usuarios:
 
