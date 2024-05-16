@@ -2,10 +2,9 @@
 
 ## Challenge - Seguridad Informática 2022 - Manejo de informacion
 
-Para cumplir con el objetivo de asegurar la información proporcionada por el endpoint https://62433a7fd126926d0c5d296b.mockapi.io/api/v1/usuarios y hacerla disponible para su consumo por distintos equipos y aplicaciones de la empresa, se implementarán medidas de seguridad adecuadas. Esto incluirá análisis de almacenamiento seguro de datos, selección de controles y protocolos de seguridad, y garantía de integridad y confidencialidad de la información. 
+Para cumplir con el objetivo de asegurar la información proporcionada por el endpoint https://62433a7fd126926d0c5d296b.mockapi.io/api/v1/usuarios y hacerla disponible para su consumo por distintos equipos y aplicaciones de la empresa, se implementarán medidas de seguridad adecuadas. Esto incluirá análisis de almacenamiento seguro de datos, selección de controles y protocolos de seguridad, y garantía de integridad y confidencialidad de la información.
 
 Posteriormente, se proporcionará una explicación detallada de la arquitectura implementada para esta solución.
-
 
 # **Arquitectura de la solucion implementada**
 
@@ -125,7 +124,6 @@ Con fines de laboratorio, se han definido internamente roles específicos (admin
 
 Cuando aparezca el mensaje indicado, indica que la subida se realizó correctamente.
 
-
 ![Alt text](assets/image12.png)
 
 Una vez que las imágenes de Docker hayan sido cargadas, el usuario podrá hacer uso del documento guía de consumo de las APIs. Es importante tener en cuenta que el archivo "data.http" contiene datos ficticios, creados exclusivamente con propósitos prácticos de laboratorio.
@@ -136,7 +134,7 @@ Además, se debe asegurar que las imágenes de Docker estén disponibles en una 
 
 # El funcionamiento de los endpoints es el siguiente:
 
-## EN CASO DADO DE QUE NO TE DEJE ACCEDER 
+## EN CASO DADO DE QUE NO TE DEJE ACCEDER
 
 Esto se debe a que los certificados no están firmados por un proveedor válido.
 
@@ -162,7 +160,7 @@ En este endpoint se realiza la validación del usuario para verificar su disponi
 
 ![Alt text](assets/image13.png)
 
-## INICIAR SESION 
+## INICIAR SESION
 
 Al iniciar sesión con las credenciales proporcionadas, se valida la existencia del usuario y se verifican las credenciales con las versiones encriptadas almacenadas en reposo en la base de datos. Si las credenciales son válidas, se devuelve un access_token. En este caso, no se optó por utilizar refresh_token, pero es una opción viable para implementar si es necesario.
 
@@ -201,8 +199,6 @@ Puedes acceder a la documentación completa de nuestra API navegando a la ruta /
 Además, cada endpoint está acompañado de información detallada sobre los tipos de datos que se pueden enviar en las solicitudes y las respuestas que se esperan recibir. Esto te ayudará a comprender cómo interactuar con la misma.
 
 ![Alt text](assets/image20.png)
-
-
 
 # Observaciones en la seguridad del Endpoint suministrado en el challenge
 
@@ -264,27 +260,27 @@ Metodos permitidos en el endpoint, sin headers se seguridad:
 
 ![Alt text](assets/image6.png)
 
-
-
 Saludos, quedo atento a sus comentarios
 
 Cualquier cosa por favor contactarme.
-
 
 Comandos que se utilizaron para la creacion proyecto de forma local
 
 ```sh {"id":"01HXFK772Y1JSCTRWKHTRBMBPR"}
 python3 -m venv [name]
 
+
 ```
 
 ```sh {"id":"01HXFK6EGJDNRR2KN37HQDB9BE"}
 Scripts\activate
 
+
 ```
 
 ```sh {"id":"01HXFK65VYBAW1T691XVJ7NQTQ"}
 pip install -r ./requirements.txt
+
 
 ```
 
@@ -293,14 +289,17 @@ Comando usados para generar los certificados con la entidad OPENSSL
 ```sh {"id":"01HXHPSH7W6TRVTYY6943MRHTG"}
 openssl genrsa -out key.pem 4096
 
+
 ```
 
 ```sh {"id":"01HXHPSPBC907BPB81FTEMXEFJ"}
 openssl req -new -key key.pem -out csr.pem -sha512
 
+
 ```
 
 ```sh {"id":"01HXHPSX13PNX7V18WVZE9M0SF"}
 openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem -sha512
+
 
 ```
