@@ -66,6 +66,10 @@ Se habilita CORS para permitir solicitudes desde diferentes orígenes, lo que me
 
 Los datos sensibles almacenados en la base de datos se encriptan para protegerlos en reposo.
 
+## Versionamiento de Endpoints:
+
+Se ha implementado un sistema de versionamiento para los endpoints de la API con el fin de mejorar la organización y mantenibilidad del código. Cada conjunto de endpoints relacionados se ha asignado a una versión específica, lo que permite realizar cambios y actualizaciones de manera controlada y sin afectar a otras partes del sistema. Esto se logra incluyendo el número de versión en la URL de la API, lo que facilita la gestión de cambios y la introducción de nuevas características.
+
 ## Categorizacion de datos:
 
 *SENSIBLES: (Role admin)*
