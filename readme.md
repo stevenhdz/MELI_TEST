@@ -85,6 +85,12 @@ Además, se debe asegurar que las imágenes de Docker estén disponibles en una 
 
 # El funcionamiento de los endpoints es el siguiente:
 
+## EN CASO DADO DE QUE NO TE DEJE ACCEDER 
+
+Esto se debe a que los certificados no están firmados por un proveedor válido.
+
+![Alt text](assets/image21.png)
+
 ## REGISTRO
 
 Cuando un usuario se registra, se le asigna el rol "USER". Sin embargo, debido a consideraciones de laboratorio, los roles "ADMIN" y "RRHH" se crean automáticamente junto con dos usuarios asociados, cuyas credenciales son:
