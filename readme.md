@@ -126,9 +126,9 @@ Se habilita CORS para permitir solicitudes desde diferentes orígenes, lo que me
 
 Los datos sensibles almacenados en la base de datos se encriptan para protegerlos en reposo.
 
-El problema percibido es que por falta de informacion no se puede evidenciar quien si observara los datos en crudo y quien no.
+## Categorizacion de datos:
 
-SENSIBLES: (Role admin)
+*SENSIBLES: (Role admin)*
 
     credit_card_num: Número de tarjeta de crédito.
     credit_card_ccv: Código de seguridad de la tarjeta de crédito.
@@ -138,7 +138,7 @@ SENSIBLES: (Role admin)
     geo_longitud: Coordenada de longitud.
     ip: Dirección IP.
 
-PÚBLICOS: (Role user)
+*PÚBLICOS: (Role user)*
 
     user_name: Nombre de usuario.
     codigo_zip: Código postal.
@@ -152,18 +152,19 @@ PÚBLICOS: (Role user)
     avatar: Enlace a la imagen de perfil.
     fec_birthday: Fecha de cumpleaños.
 
-SEMIPRIVADOS: (Role rrhh)
+*SEMIPRIVADOS: (Role rrhh)*
 
     fec_alta: Fecha de alta (podría variar dependiendo del contexto).
     id: Identificación.
 
-Segun la suma de informacion se le da una clasificacion a los datos.
+La clasificación de los datos se determina en función de la cantidad de información recopilada.
 
-va adapatado al core del negocio los roles
+Los roles se ajustan estratégicamente al núcleo del negocio, asegurando una alineación efectiva con los objetivos y funciones críticas de la organización
 
-pero se debe tener en cuenta lo siguiente:
+En términos prácticos, resulta inviable clasificar un rol administrativo durante el proceso de registro, ya que esto podría comprometer la seguridad de la aplicación. Por lo tanto, es necesario implementar un filtro de verificación para evitar esta posibilidad.
 
-        Para fines pracricos no es viable que al momento del registro, se clasificaque el role administrativo lo cual puede comprometer toda la aplicacion para esto se debe hacer un filtro de verificacion
+
+Con fines de laboratorio, se han definido internamente roles específicos (administrador, usuario, recursos humanos) para categorizar los datos que se mostrarán.
 
 cifrado sobre...
 
