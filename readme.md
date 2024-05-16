@@ -6,6 +6,106 @@ Para cumplir con el objetivo de asegurar la información proporcionada por el en
 
 Posteriormente, se proporcionará una explicación detallada de la arquitectura implementada para esta solución.
 
+
+# **Arquitectura de la solucion implementada**
+
+![Alt text](assets/image7.png)
+
+# Explicacion detallada de los temas asociados a la solución implementada:
+
+## Criterios de Aceptación en Contraseña:
+
+Se valida que las contraseñas cumplan con criterios específicos, como tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial.
+
+## Autenticación y Autorización JWT (HS512) Firmado:
+
+Se utiliza JWT (JSON Web Tokens) con algoritmo de firma HS512 para autenticar y autorizar las solicitudes a la API.
+
+## Encriptación de Datos en Reposo y Tránsito:
+
+Los datos sensibles se encriptan utilizando el algoritmo AES en modo de operación CBC con una longitud de clave de 128 bits.
+La contraseña se hashea utilizando bcrypt, un algoritmo de hashing basado en Blowfish, antes de almacenarse en la base de datos.
+
+## Control de Acceso y Limitación de Solicitudes:
+
+Se implementa un sistema de limitación de solicitudes para evitar ataques de denegación de servicio (DoS).
+
+## Seguridad de la Capa de Transporte (TLS/SSL):
+
+El servidor se ejecuta utilizando un contexto SSL/TLS proporcionado por Flask para garantizar la seguridad de la comunicación entre el cliente y el servidor.
+
+## Cabeceras de Seguridad HTTP:
+
+Se agregan encabezados de seguridad HTTP, como HSTS, CSP, X-Content-Type-Options, X-Frame-Options, Referrer-Policy y X-XSS-Protection, para mitigar varios vectores de ataque.
+
+## Sanitización y Validación de Datos:
+
+Se implementa la sanitización y validación de datos para prevenir inyecciones de código malicioso o datos incorrectos.
+
+## Control de Errores y Sus Códigos:
+
+Se manejan errores de manera adecuada y se proporcionan códigos de estado HTTP correspondientes para una mejor comprensión de los problemas.
+
+## Auditoría con Logs:
+
+Se lleva a cabo una auditoría de eventos importantes mediante el registro de logs, lo que permite realizar un seguimiento de las actividades y detectar posibles problemas de seguridad.
+
+## Variables de Entorno:
+
+Las configuraciones sensibles, como claves secretas, se almacenan en variables de entorno para evitar la exposición accidental en el código.
+
+## Documentación Mediante Swagger No UI:
+
+Se proporciona documentación de la API mediante Swagger para facilitar a los desarrolladores la comprensión de los endpoints y sus parámetros.
+
+## CORS:
+
+Se habilita CORS para permitir solicitudes desde diferentes orígenes, lo que mejora la interoperabilidad de la aplicación.
+
+## Datos Encriptados en la Base de Datos:
+
+Los datos sensibles almacenados en la base de datos se encriptan para protegerlos en reposo.
+
+## Categorizacion de datos:
+
+*SENSIBLES: (Role admin)*
+
+    credit_card_num: Número de tarjeta de crédito.
+    credit_card_ccv: Código de seguridad de la tarjeta de crédito.
+    cuenta_numero: Número de cuenta.
+    foto_dni: Fotografía del documento de identidad.
+    geo_latitud: Coordenada de latitud.
+    geo_longitud: Coordenada de longitud.
+    ip: Dirección IP.
+
+*PÚBLICOS: (Role user)*
+
+    user_name: Nombre de usuario.
+    codigo_zip: Código postal.
+    direccion: Dirección.
+    color_favorito: Color favorito.
+    auto: Marca y modelo del automóvil.
+    auto_modelo: Modelo del automóvil.
+    auto_tipo: Tipo de automóvil.
+    auto_color: Color del automóvil.
+    cantidad_compras_realizadas: Cantidad de compras realizadas.
+    avatar: Enlace a la imagen de perfil.
+    fec_birthday: Fecha de cumpleaños.
+
+*SEMIPRIVADOS: (Role rrhh)*
+
+    fec_alta: Fecha de alta (podría variar dependiendo del contexto).
+    id: Identificación.
+
+La clasificación de los datos se determina en función de la cantidad de información recopilada.
+
+Los roles se ajustan estratégicamente al núcleo del negocio, asegurando una alineación efectiva con los objetivos y funciones críticas de la organización
+
+En términos prácticos, resulta inviable clasificar un rol administrativo durante el proceso de registro, ya que esto podría comprometer la seguridad de la aplicación. Por lo tanto, es necesario implementar un filtro de verificación para evitar esta posibilidad.
+
+Con fines de laboratorio, se han definido internamente roles específicos (administrador, usuario, recursos humanos) para categorizar los datos que se mostrarán, ademas de los certificados debido a que tendria que contratar una entidad que me los genere oficialmente.
+
+
 # Solución al Problema de Seguridad en el Endpoint
 
 El endpoint presenta varias observaciones de seguridad que deben abordarse para garantizar la protección de los datos y la privacidad de los usuarios:
@@ -156,104 +256,6 @@ Puedes acceder a la documentación completa de nuestra API navegando a la ruta /
 Además, cada endpoint está acompañado de información detallada sobre los tipos de datos que se pueden enviar en las solicitudes y las respuestas que se esperan recibir. Esto te ayudará a comprender cómo interactuar con la misma.
 
 ![Alt text](assets/image20.png)
-
-# **Arquitectura de la solucion implementada**
-
-![Alt text](assets/image7.png)
-
-# Explicacion detallada de los temas asociados a la solución implementada:
-
-## Criterios de Aceptación en Contraseña:
-
-Se valida que las contraseñas cumplan con criterios específicos, como tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial.
-
-## Autenticación y Autorización JWT (HS512) Firmado:
-
-Se utiliza JWT (JSON Web Tokens) con algoritmo de firma HS512 para autenticar y autorizar las solicitudes a la API.
-
-## Encriptación de Datos en Reposo y Tránsito:
-
-Los datos sensibles se encriptan utilizando el algoritmo AES en modo de operación CBC con una longitud de clave de 128 bits.
-La contraseña se hashea utilizando bcrypt, un algoritmo de hashing basado en Blowfish, antes de almacenarse en la base de datos.
-
-## Control de Acceso y Limitación de Solicitudes:
-
-Se implementa un sistema de limitación de solicitudes para evitar ataques de denegación de servicio (DoS).
-
-## Seguridad de la Capa de Transporte (TLS/SSL):
-
-El servidor se ejecuta utilizando un contexto SSL/TLS proporcionado por Flask para garantizar la seguridad de la comunicación entre el cliente y el servidor.
-
-## Cabeceras de Seguridad HTTP:
-
-Se agregan encabezados de seguridad HTTP, como HSTS, CSP, X-Content-Type-Options, X-Frame-Options, Referrer-Policy y X-XSS-Protection, para mitigar varios vectores de ataque.
-
-## Sanitización y Validación de Datos:
-
-Se implementa la sanitización y validación de datos para prevenir inyecciones de código malicioso o datos incorrectos.
-
-## Control de Errores y Sus Códigos:
-
-Se manejan errores de manera adecuada y se proporcionan códigos de estado HTTP correspondientes para una mejor comprensión de los problemas.
-
-## Auditoría con Logs:
-
-Se lleva a cabo una auditoría de eventos importantes mediante el registro de logs, lo que permite realizar un seguimiento de las actividades y detectar posibles problemas de seguridad.
-
-## Variables de Entorno:
-
-Las configuraciones sensibles, como claves secretas, se almacenan en variables de entorno para evitar la exposición accidental en el código.
-
-## Documentación Mediante Swagger No UI:
-
-Se proporciona documentación de la API mediante Swagger para facilitar a los desarrolladores la comprensión de los endpoints y sus parámetros.
-
-## CORS:
-
-Se habilita CORS para permitir solicitudes desde diferentes orígenes, lo que mejora la interoperabilidad de la aplicación.
-
-## Datos Encriptados en la Base de Datos:
-
-Los datos sensibles almacenados en la base de datos se encriptan para protegerlos en reposo.
-
-## Categorizacion de datos:
-
-*SENSIBLES: (Role admin)*
-
-    credit_card_num: Número de tarjeta de crédito.
-    credit_card_ccv: Código de seguridad de la tarjeta de crédito.
-    cuenta_numero: Número de cuenta.
-    foto_dni: Fotografía del documento de identidad.
-    geo_latitud: Coordenada de latitud.
-    geo_longitud: Coordenada de longitud.
-    ip: Dirección IP.
-
-*PÚBLICOS: (Role user)*
-
-    user_name: Nombre de usuario.
-    codigo_zip: Código postal.
-    direccion: Dirección.
-    color_favorito: Color favorito.
-    auto: Marca y modelo del automóvil.
-    auto_modelo: Modelo del automóvil.
-    auto_tipo: Tipo de automóvil.
-    auto_color: Color del automóvil.
-    cantidad_compras_realizadas: Cantidad de compras realizadas.
-    avatar: Enlace a la imagen de perfil.
-    fec_birthday: Fecha de cumpleaños.
-
-*SEMIPRIVADOS: (Role rrhh)*
-
-    fec_alta: Fecha de alta (podría variar dependiendo del contexto).
-    id: Identificación.
-
-La clasificación de los datos se determina en función de la cantidad de información recopilada.
-
-Los roles se ajustan estratégicamente al núcleo del negocio, asegurando una alineación efectiva con los objetivos y funciones críticas de la organización
-
-En términos prácticos, resulta inviable clasificar un rol administrativo durante el proceso de registro, ya que esto podría comprometer la seguridad de la aplicación. Por lo tanto, es necesario implementar un filtro de verificación para evitar esta posibilidad.
-
-Con fines de laboratorio, se han definido internamente roles específicos (administrador, usuario, recursos humanos) para categorizar los datos que se mostrarán, ademas de los certificados debido a que tendria que contratar una entidad que me los genere oficialmente.
 
 Comandos que se utilizaron para la creacion proyecto de forma local
 
