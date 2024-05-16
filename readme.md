@@ -85,34 +85,44 @@ Se utiliza JWT (JSON Web Tokens) con algoritmo de firma HS512 para autenticar y 
 
 Los datos sensibles se encriptan utilizando el algoritmo AES en modo de operación CBC con una longitud de clave de 128 bits.
 La contraseña se hashea utilizando bcrypt, un algoritmo de hashing basado en Blowfish, antes de almacenarse en la base de datos.
-Control de Acceso y Limitación de Solicitudes:
+
+**Control de Acceso y Limitación de Solicitudes:**
 
 Se implementa un sistema de limitación de solicitudes para evitar ataques de denegación de servicio (DoS).
-Seguridad de la Capa de Transporte (TLS/SSL):
+
+**Seguridad de la Capa de Transporte (TLS/SSL):**
 
 El servidor se ejecuta utilizando un contexto SSL/TLS proporcionado por Flask para garantizar la seguridad de la comunicación entre el cliente y el servidor.
-Cabeceras de Seguridad HTTP:
+
+**Cabeceras de Seguridad HTTP:**
 
 Se agregan encabezados de seguridad HTTP, como HSTS, CSP, X-Content-Type-Options, X-Frame-Options, Referrer-Policy y X-XSS-Protection, para mitigar varios vectores de ataque.
-Sanitización y Validación de Datos:
+
+**Sanitización y Validación de Datos:**
 
 Se implementa la sanitización y validación de datos para prevenir inyecciones de código malicioso o datos incorrectos.
-Control de Errores y Sus Códigos:
+
+**Control de Errores y Sus Códigos:**
 
 Se manejan errores de manera adecuada y se proporcionan códigos de estado HTTP correspondientes para una mejor comprensión de los problemas.
-Auditoría con Logs:
+
+**Auditoría con Logs:**
 
 Se lleva a cabo una auditoría de eventos importantes mediante el registro de logs, lo que permite realizar un seguimiento de las actividades y detectar posibles problemas de seguridad.
-Variables de Entorno:
+
+**Variables de Entorno:**
 
 Las configuraciones sensibles, como claves secretas, se almacenan en variables de entorno para evitar la exposición accidental en el código.
-Documentación Mediante Swagger No UI:
+
+**Documentación Mediante Swagger No UI:**
 
 Se proporciona documentación de la API mediante Swagger para facilitar a los desarrolladores la comprensión de los endpoints y sus parámetros.
-CORS:
+
+**CORS:**
 
 Se habilita CORS para permitir solicitudes desde diferentes orígenes, lo que mejora la interoperabilidad de la aplicación.
-Datos Encriptados en la Base de Datos:
+
+**Datos Encriptados en la Base de Datos:**
 
 Los datos sensibles almacenados en la base de datos se encriptan para protegerlos en reposo.
 
