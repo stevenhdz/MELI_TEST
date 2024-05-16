@@ -145,7 +145,7 @@ Además, cada endpoint está acompañado de información detallada sobre los tip
 
 ![Alt text](assets/image20.png)
 
-### **Arquitectura de la solucion implementada**
+# **Arquitectura de la solucion implementada**
 
 ![Alt text](assets/image7.png)
 
