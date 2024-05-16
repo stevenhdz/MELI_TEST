@@ -71,7 +71,7 @@ docker-compose up
 
 ![Alt text](assets/image7.png)
 
-Explicacion detallada de los temas asociados a la solución implementada:
+# Explicacion detallada de los temas asociados a la solución implementada:
 
 ## Criterios de Aceptación en Contraseña:
 
