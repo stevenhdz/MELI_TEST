@@ -17,7 +17,7 @@ curl --location --request POST 'https://127.0.0.1:3000/v1/login' \
 ### user info
 curl --location --request POST 'https://127.0.0.1:3000/v1/information/external/one' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNTgxMjc0MywianRpIjoiNTY3NTc5ZGQtMGJiMy00OWVlLThiMGItYTE0NTc5MzAxZjhlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InN0ZXZlbmhkengxOCIsIm5iZiI6MTcxNTgxMjc0MywiY3NyZiI6IjU4MDVkOTMxLWZhMzEtNDRiYy1hYWMzLTY5ZWFhMDQ5ODM2MiIsImV4cCI6MTcxNTgxMzI0M30.yyLZ8JNsIU79RO8MaGO4MAudLVwQ1iLcUL2hk7iz-eou6860_M-ZWmy-XQ8lLAQCk-S4Mthiz3ruqhFN04OkjQ' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNTg4NTE5MiwianRpIjoiZjMyNjE3NjMtZTgxYS00ZDRlLTkwNzUtMDRkZjkxYTU0ZjVkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InN0ZXZlbmhkengxOCIsIm5iZiI6MTcxNTg4NTE5MiwiY3NyZiI6ImQ0NDY2OTU4LWE4YTctNGExZS05MTZkLTcwODE0NjYyNzE4MCIsImV4cCI6MTcxNTg4NTY5Mn0.grDrfsE_ga2m6J8-6-tk3l52B3zTz8EyTzjgk6CXV41Lz4PyMfAQGIJEA3kvMstZqBzxaRhD3MZSE5dr1PzA_Q' \
 --data '{
     "id": 2
 }'

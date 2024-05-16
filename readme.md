@@ -2,41 +2,39 @@
 
 # Solución al Problema de Seguridad en el Endpoint
 
-
 El endpoint presenta varias observaciones de seguridad que deben abordarse para garantizar la protección de los datos y la privacidad de los usuarios:
 
-## Divulgación de datos sensibles: 
+## Divulgación de datos sensibles:
 
 El endpoint expone datos que podrían considerarse sensibles, como información personal o confidencial, sin ningún tipo de protección o restricción.
 
-## Exposición a ataques de fuerza bruta: 
+## Exposición a ataques de fuerza bruta:
 
 El método GET utilizado en el endpoint puede ser vulnerable a ataques de fuerza bruta, donde un atacante podría intentar acceder a los recursos mediante la generación de múltiples solicitudes automatizadas, lo que podría resultar en una sobrecarga del sistema o acceso no autorizado.
 
-## Violación de la privacidad del usuario: 
-    
+## Violación de la privacidad del usuario:
+
 La información del usuario puede estar siendo expuesta sin su consentimiento o conocimiento, lo que representa una violación de su privacidad.
 
-## Riesgo de exposición de datos personales: 
-    
+## Riesgo de exposición de datos personales:
+
 Al permitir el acceso a todos los datos de forma indiscriminada a través del método GET, se corre el riesgo de exponer datos personales tanto de forma individual como en conjunto, lo que podría tener graves implicaciones para la privacidad de los usuarios.
 
-## Vulnerabilidades de seguridad: 
+## Vulnerabilidades de seguridad:
 
 La falta de un método de autenticación y verificación deja al sistema vulnerable a todo tipo de ataques, ya que no se requiere ninguna forma de identificación para acceder a los recursos, lo que facilita el acceso no autorizado y la manipulación de datos.
 
-## Acceso completo sin autenticación: 
-    
+## Acceso completo sin autenticación:
+
 Se puede acceder a toda la información almacenada en el sistema sin autenticación, lo que representa un riesgo significativo de divulgación de datos sensibles y violación de la privacidad del usuario.
 
-## Manipulación de datos sin autenticación: 
-    
+## Manipulación de datos sin autenticación:
+
 Se pueden realizar operaciones de actualización y eliminación de datos sin ningún tipo de autenticación, lo que facilita la manipulación no autorizada de la información almacenada en el sistema.
 
-## Límite de creación sin autenticación: 
-    
-Aunque hay un límite de 100 elementos para la creación de nuevos datos, sigue siendo posible realizar este proceso sin autenticación, lo que podría ser explotado por un atacante para saturar el sistema con datos falsos o basura.
+## Límite de creación sin autenticación:
 
+Aunque hay un límite de 100 elementos para la creación de nuevos datos, sigue siendo posible realizar este proceso sin autenticación, lo que podría ser explotado por un atacante para saturar el sistema con datos falsos o basura.
 
 Consulta de información individual sin autenticación:
 
@@ -62,19 +60,30 @@ Metodos permitidos en el endpoint, sin headers se seguridad:
 
 ![Alt text](assets/image6.png)
 
-Para la ejeucion del proyecto, solo basta con ejecutar lo siguiente una vez descargado el repositorio en su equipo.
+# Para ejecutar el proyecto, simplemente sigue estos pasos:
 
-```sh {"id":"01HXHPV3FMD95F4KRHHCWDSJGP"}
-docker-compose up
+## Para clonar el repositorio, puedes utilizar ya sea el método HTTPS o SSH.
 
-```
+![Alt text](assets/image10.png)
 
+## Abre la terminal y navega hasta la carpeta raíz del repositorio MELITEST. Luego, puedes ejecutar el comando **`docker-compose up`** para instalar y levantar las imágenes junto con su información correspondiente.
+
+![Alt text](assets/image9.png)
+
+![Alt text](assets/image11.png)
+
+Cuando aparezca el mensaje indicado, indica que la subida se realizó correctamente.
+
+
+![Alt text](assets/image12.png)
 
 Una vez que las imágenes de Docker hayan sido cargadas, el usuario podrá hacer uso del documento guía de consumo de las APIs. Es importante tener en cuenta que el archivo "data.http" contiene datos ficticios, creados exclusivamente con propósitos prácticos de laboratorio.
 
 Además, se debe asegurar que las imágenes de Docker estén disponibles en una ubicación adecuada y accesible para su utilización en el entorno correspondiente.
 
 ![Alt text](assets/image8.png)
+
+El funcionamiento de los endpoints es el siguiente:
 
 ### **Arquitectura de la solucion implementada**
 
@@ -172,10 +181,9 @@ Los roles se ajustan estratégicamente al núcleo del negocio, asegurando una al
 
 En términos prácticos, resulta inviable clasificar un rol administrativo durante el proceso de registro, ya que esto podría comprometer la seguridad de la aplicación. Por lo tanto, es necesario implementar un filtro de verificación para evitar esta posibilidad.
 
-
 Con fines de laboratorio, se han definido internamente roles específicos (administrador, usuario, recursos humanos) para categorizar los datos que se mostrarán, ademas de los certificados debido a que tendria que contratar una entidad que me los genere oficialmente.
 
-Para la creacion proyecto de forma local se utilizaron los siquientes comandos:
+Comandos que se utilizaron para la creacion proyecto de forma local
 
 ```sh {"id":"01HXFK772Y1JSCTRWKHTRBMBPR"}
 python3 -m venv [name]
@@ -192,15 +200,7 @@ pip install -r ./requirements.txt
 
 ```
 
-```sh {"id":"01HXFPKKM6AT4NBD8T785Z0Y9F"}
-docker build -t myapp .
-
-```
-
-```sh {"id":"01HXFPKVCJXH432NTJ1XTG06GH"}
-docker run -p 3000:3000 myapp
-
-```
+Comando usados para generar los certificados con la entidad OPENSSL
 
 ```sh {"id":"01HXHPSH7W6TRVTYY6943MRHTG"}
 openssl genrsa -out key.pem 4096
