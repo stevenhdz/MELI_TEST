@@ -83,7 +83,67 @@ Además, se debe asegurar que las imágenes de Docker estén disponibles en una 
 
 ![Alt text](assets/image8.png)
 
-El funcionamiento de los endpoints es el siguiente:
+# El funcionamiento de los endpoints es el siguiente:
+
+## REGISTRO
+
+Cuando un usuario se registra, se le asigna el rol "USER". Sin embargo, debido a consideraciones de laboratorio, los roles "ADMIN" y "RRHH" se crean automáticamente junto con dos usuarios asociados, cuyas credenciales son:
+
+Usuario Administrador (ADMIN):
+
+Username: admin
+Contraseña: admin
+
+Usuario de Recursos Humanos (RRHH):
+
+Username: rrhh
+Contraseña: rrhh
+
+Es importante destacar que este procedimiento se realiza únicamente con fines de laboratorio y no es aplicable en entornos reales.
+
+En este endpoint se realiza la validación del usuario para verificar su disponibilidad y se asegura de que la contraseña cumpla con los estándares establecidos.
+
+![Alt text](assets/image13.png)
+
+## INICIAR SESION 
+
+Al iniciar sesión con las credenciales proporcionadas, se valida la existencia del usuario y se verifican las credenciales con las versiones encriptadas almacenadas en reposo en la base de datos. Si las credenciales son válidas, se devuelve un access_token. En este caso, no se optó por utilizar refresh_token, pero es una opción viable para implementar si es necesario.
+
+El token tiene un tiempo de vida de 5 minutos.
+
+![Alt text](assets/image14.png)
+
+## LISTAR USUARIO DE API EXTERNA
+
+En este endpoint es importante destacar que solo se mostrará la información disponible en el momento de ejecutar la aplicación en el contenedor Docker. Puedes consultar esta información utilizando su identificador (ID). Además, es crucial tener en cuenta que la visualización de los datos estará restringida según el rol del usuario. Los datos estarán cifrados para aquellos usuarios que no tengan permiso para acceder a ellos, de acuerdo con la clasificación de datos y sus respectivos roles.
+
+![Alt text](assets/image16.png)
+
+## LISTAR TODA LA INFORMACION EXTERNA
+
+En este endpoint, es esencial tener en cuenta que la información se mostrará de acuerdo al rol del usuario en el sistema. Esto significa que, aunque se muestre toda la información disponible en el momento de ejecutar la aplicación en el contenedor Docker, los datos serán filtrados según los permisos asociados al rol del usuario. Es decir, cada usuario solo podrá ver la información para la cual tiene autorización de acceso según su rol asignado.
+
+![Alt text](assets/image17.png)
+
+## CERRAR SESIÓN
+
+En este endpoint, tenemos la capacidad de cerrar la sesión del usuario, lo cual es fundamental para evitar que la sesión permanezca abierta y sea vulnerable a suplantaciones u otros riesgos de seguridad.
+
+![Alt text](assets/image18.png)
+
+## VALIDACION DE RUTAS NO ACCESIBLES O NO EXISTENTES
+
+En este endpoint, la validación se enfoca en impedir que el usuario acceda a secciones no autorizadas o que no existen en la aplicación. Esto se logra verificando que las rutas a las que intenta acceder no estén permitidas o no existan en el sistema.
+
+![Alt text](assets/image19.png)
+
+## SWAGGER DOCUMENTACION APIS
+
+Puedes acceder a la documentación completa de nuestra API navegando a la ruta /swagger en tu navegador web. Una vez allí, encontrarás una lista de todos los endpoints disponibles, junto con una descripción de lo que hace cada uno.
+
+Además, cada endpoint está acompañado de información detallada sobre los tipos de datos que se pueden enviar en las solicitudes y las respuestas que se esperan recibir. Esto te ayudará a comprender cómo interactuar con la misma.
+
+![Alt text](assets/image20.png)
 
 ### **Arquitectura de la solucion implementada**
 
