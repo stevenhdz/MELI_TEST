@@ -109,67 +109,6 @@ En términos prácticos, resulta inviable clasificar un rol administrativo duran
 
 Con fines de laboratorio, se han definido internamente roles específicos (administrador, usuario, recursos humanos) para categorizar los datos que se mostrarán, ademas de los certificados debido a que tendria que contratar una entidad que me los genere oficialmente.
 
-
-# Observaciones en la seguridad del Endpoint suministrado en el challenge
-
-El endpoint presenta varias observaciones de seguridad que deben abordarse para garantizar la protección de los datos y la privacidad de los usuarios:
-
-## Divulgación de datos sensibles:
-
-El endpoint expone datos que podrían considerarse sensibles, como información personal o confidencial, sin ningún tipo de protección o restricción.
-
-## Exposición a ataques de fuerza bruta:
-
-El método GET utilizado en el endpoint puede ser vulnerable a ataques de fuerza bruta, donde un atacante podría intentar acceder a los recursos mediante la generación de múltiples solicitudes automatizadas, lo que podría resultar en una sobrecarga del sistema o acceso no autorizado.
-
-## Violación de la privacidad del usuario:
-
-La información del usuario puede estar siendo expuesta sin su consentimiento o conocimiento, lo que representa una violación de su privacidad.
-
-## Riesgo de exposición de datos personales:
-
-Al permitir el acceso a todos los datos de forma indiscriminada a través del método GET, se corre el riesgo de exponer datos personales tanto de forma individual como en conjunto, lo que podría tener graves implicaciones para la privacidad de los usuarios.
-
-## Vulnerabilidades de seguridad:
-
-La falta de un método de autenticación y verificación deja al sistema vulnerable a todo tipo de ataques, ya que no se requiere ninguna forma de identificación para acceder a los recursos, lo que facilita el acceso no autorizado y la manipulación de datos.
-
-## Acceso completo sin autenticación:
-
-Se puede acceder a toda la información almacenada en el sistema sin autenticación, lo que representa un riesgo significativo de divulgación de datos sensibles y violación de la privacidad del usuario.
-
-## Manipulación de datos sin autenticación:
-
-Se pueden realizar operaciones de actualización y eliminación de datos sin ningún tipo de autenticación, lo que facilita la manipulación no autorizada de la información almacenada en el sistema.
-
-## Límite de creación sin autenticación:
-
-Aunque hay un límite de 100 elementos para la creación de nuevos datos, sigue siendo posible realizar este proceso sin autenticación, lo que podría ser explotado por un atacante para saturar el sistema con datos falsos o basura.
-
-Consulta de información individual sin autenticación:
-
-![Alt text](assets/image3.png)
-
-Permite consulta informacion individual:
-
-![Alt text](assets/image2.png)
-
-Actualización sin autenticación:
-
-![Alt text](assets/image.png)
-
-Eliminación sin restricciones:
-
-![Alt text](assets/image4.png)
-
-Límite de creación de 100 elementos:
-
-![Alt text](assets/image5.png)
-
-Metodos permitidos en el endpoint, sin headers se seguridad:
-
-![Alt text](assets/image6.png)
-
 # Para ejecutar el proyecto, simplemente sigue estos pasos:
 
 ## Para clonar el repositorio, puedes utilizar ya sea el método HTTPS o SSH.
@@ -260,6 +199,68 @@ Puedes acceder a la documentación completa de nuestra API navegando a la ruta /
 Además, cada endpoint está acompañado de información detallada sobre los tipos de datos que se pueden enviar en las solicitudes y las respuestas que se esperan recibir. Esto te ayudará a comprender cómo interactuar con la misma.
 
 ![Alt text](assets/image20.png)
+
+
+
+# Observaciones en la seguridad del Endpoint suministrado en el challenge
+
+El endpoint presenta varias observaciones de seguridad que deben abordarse para garantizar la protección de los datos y la privacidad de los usuarios:
+
+## Divulgación de datos sensibles:
+
+El endpoint expone datos que podrían considerarse sensibles, como información personal o confidencial, sin ningún tipo de protección o restricción.
+
+## Exposición a ataques de fuerza bruta:
+
+El método GET utilizado en el endpoint puede ser vulnerable a ataques de fuerza bruta, donde un atacante podría intentar acceder a los recursos mediante la generación de múltiples solicitudes automatizadas, lo que podría resultar en una sobrecarga del sistema o acceso no autorizado.
+
+## Violación de la privacidad del usuario:
+
+La información del usuario puede estar siendo expuesta sin su consentimiento o conocimiento, lo que representa una violación de su privacidad.
+
+## Riesgo de exposición de datos personales:
+
+Al permitir el acceso a todos los datos de forma indiscriminada a través del método GET, se corre el riesgo de exponer datos personales tanto de forma individual como en conjunto, lo que podría tener graves implicaciones para la privacidad de los usuarios.
+
+## Vulnerabilidades de seguridad:
+
+La falta de un método de autenticación y verificación deja al sistema vulnerable a todo tipo de ataques, ya que no se requiere ninguna forma de identificación para acceder a los recursos, lo que facilita el acceso no autorizado y la manipulación de datos.
+
+## Acceso completo sin autenticación:
+
+Se puede acceder a toda la información almacenada en el sistema sin autenticación, lo que representa un riesgo significativo de divulgación de datos sensibles y violación de la privacidad del usuario.
+
+## Manipulación de datos sin autenticación:
+
+Se pueden realizar operaciones de actualización y eliminación de datos sin ningún tipo de autenticación, lo que facilita la manipulación no autorizada de la información almacenada en el sistema.
+
+## Límite de creación sin autenticación:
+
+Aunque hay un límite de 100 elementos para la creación de nuevos datos, sigue siendo posible realizar este proceso sin autenticación, lo que podría ser explotado por un atacante para saturar el sistema con datos falsos o basura.
+
+Consulta de información individual sin autenticación:
+
+![Alt text](assets/image3.png)
+
+Permite consulta informacion individual:
+
+![Alt text](assets/image2.png)
+
+Actualización sin autenticación:
+
+![Alt text](assets/image.png)
+
+Eliminación sin restricciones:
+
+![Alt text](assets/image4.png)
+
+Límite de creación de 100 elementos:
+
+![Alt text](assets/image5.png)
+
+Metodos permitidos en el endpoint, sin headers se seguridad:
+
+![Alt text](assets/image6.png)
 
 Comandos que se utilizaron para la creacion proyecto de forma local
 
