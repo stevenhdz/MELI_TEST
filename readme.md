@@ -264,6 +264,13 @@ Metodos permitidos en el endpoint, sin headers se seguridad:
 
 ![Alt text](assets/image6.png)
 
+
+
+Saludos, quedo atento a sus comentarios
+
+Cualquier cosa por favor contactarme.
+
+
 Comandos que se utilizaron para la creacion proyecto de forma local
 
 ```sh {"id":"01HXFK772Y1JSCTRWKHTRBMBPR"}
