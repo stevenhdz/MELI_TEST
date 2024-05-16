@@ -166,12 +166,6 @@ En términos prácticos, resulta inviable clasificar un rol administrativo duran
 
 Con fines de laboratorio, se han definido internamente roles específicos (administrador, usuario, recursos humanos) para categorizar los datos que se mostrarán.
 
-cifrado sobre...
-
-El otro problema percibido es que todos los datos mencionados tienden a ser sensibles por ende debe ser encriptados en su mayoria, por lo tanto no hay datos normales que puedan ser mostrados sin problema.
-
-Analisis de riesgo en la solucion planteada.
-
 Para la creacion proyecto de forma local se utilizaron los siquientes comandos:
 
 ```sh {"id":"01HXFK772Y1JSCTRWKHTRBMBPR"}
