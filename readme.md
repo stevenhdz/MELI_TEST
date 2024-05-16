@@ -67,7 +67,7 @@ docker-compose up
 
 ```
 
-Arquitectura de la solucion implementada
+### **Arquitectura de la solucion implementada**
 
 ![Alt text](assets/image7.png)
 
