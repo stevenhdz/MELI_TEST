@@ -33,7 +33,19 @@ def create_table_users(cursor):
         return err
 
 
-# actulizar crypto
+def update_crypto_token_user(cursor, crypto, password, username):
+    try:
+        cursor.execute('''
+        UPDATE users SET crypto = %s, password = %s WHERE username = %s''', (crypto, password, username,))
+        if cursor.rowcount > 0:
+            return True
+        else:
+            return False
+    except mysql.connector.Error as err:
+        print(f"Error al actualizar el usuario {username}: {err}")
+        return None
+
+
 def insert_data_users(cursor, data):
     try:
         cursor.execute(
@@ -145,6 +157,7 @@ def insert_data_login(cursor, data):
                  token = VALUES(token)'''
         cursor.execute(
             sql, (data['username'], data['password'], data['crypto'], data['token']))
+        return cursor.rowcount
     except mysql.connector.Error as err:
         return err
 

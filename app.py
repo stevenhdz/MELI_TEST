@@ -1,5 +1,5 @@
-from database.database import connect_to_database, create_table_information_external, list_information_external_one, list_user_login_by_token, insert_data_external, list_information_external, list_crypto_login, create_table_login, insert_data_login, user_default, create_table_users, insert_data_users, list_user
-from utils.encryption import criteria_password, hash_password, generate_key, encrypt_data, decrypt_data, encrypt_password
+from database.database import connect_to_database, update_crypto_token_user, create_table_information_external, list_information_external_one, list_user_login_by_token, insert_data_external, list_information_external, list_crypto_login, create_table_login, insert_data_login, user_default, create_table_users, insert_data_users, list_user
+from utils.encryption import criteria_password, hash_password, decrypt_password, generate_key, encrypt_data, decrypt_data, encrypt_password
 from config import JWT_SECRET_KEY, PASS, USERNAME, URL_CLIENT_EXTERNAL, SERVER_PORT, SERVER_HOST, ROLESADMIN, ROLESRHH
 import requests
 from flask_swagger import swagger
@@ -70,17 +70,6 @@ SENSIBLE_FIELDS = [
 
 
 SENSIBLE_FIELDS_USER = [
-    "user_name",
-    "codigo_zip",
-    "direccion",
-    "color_favorito",
-    "auto",
-    "auto_modelo",
-    "auto_tipo",
-    "auto_color",
-    "cantidad_compras_realizadas",
-    "avatar",
-    "fec_birthday"
 ]
 
 SENSIBLE_FIELDS_RRHH = [
@@ -282,10 +271,16 @@ def get_users():
         users = list_information_external(cursor)
         get_token = get_jwt_identity()
         token = list_user_login_by_token(cursor, get_token)
+
         if not token:
             return jsonify({'error': 'Invalid token'}), 401
 
         crypto = list_crypto_login(cursor, token[1])
+        passw = decrypt_password(crypto[2], crypto[3])
+        encryptypassw = encrypt_password(passw, key)
+
+        update = update_crypto_token_user(
+            cursor, key, encryptypassw, crypto[1])
 
         if crypto[4] == 'admin':
             fields = SENSIBLE_FIELDS
@@ -294,9 +289,11 @@ def get_users():
         else:
             fields = SENSIBLE_FIELDS_USER
 
+        conn.commit()
         conn.close()
-        decrypted_users = decrypt_data(users, fields, crypto[3])
-        return jsonify(decrypted_users), 200
+        if update:
+            decrypted_users = decrypt_data(users, fields, crypto[3])
+            return jsonify(decrypted_users), 200
     except Exception as e:
         app.logger.error(f'{current_time} - {str(e)}')
         return jsonify({'error': str(e)}), 500
@@ -346,7 +343,13 @@ def get_one_user():
 
         if not token:
             return jsonify({'error': 'Invalid token'}), 401
+
         crypto = list_crypto_login(cursor, token[1])
+        passw = decrypt_password(crypto[2], crypto[3])
+        encryptypassw = encrypt_password(passw, key)
+
+        update = update_crypto_token_user(
+            cursor, key, encryptypassw, crypto[1])
 
         if crypto[4] == 'admin':
             fields = SENSIBLE_FIELDS
@@ -355,9 +358,11 @@ def get_one_user():
         else:
             fields = SENSIBLE_FIELDS_USER
 
+        conn.commit()
         conn.close()
-        decrypted_user = decrypt_data(user, fields, crypto[3])
-        return jsonify(decrypted_user), 200
+        if update:
+            decrypted_user = decrypt_data(user, fields, crypto[3])
+            return jsonify(decrypted_user), 200
     except Exception as e:
         app.logger.error(f'{current_time} - {str(e)}')
         return jsonify({'error': str(e)}), 500
