@@ -79,7 +79,7 @@ Inicialmente en la api suministrada:
 
 Encuentro varias observaciones como:
 
-![Alt text](assets/arquitecture.png)
+![Alt text](assets/image7.png)
 
 Debido a esto mi solucion es llevarlo a tener mas seguridad, donde se implemento lo siguiente:
 
@@ -101,7 +101,7 @@ Debido a esto mi solucion es llevarlo a tener mas seguridad, donde se implemento
 
 El problema percibido es que por falta de informacion no se puede evidenciar quien si observara los datos en crudo y quien no.
 
-SENSIBLES:
+SENSIBLES: (Role admin)
 
     credit_card_num: Número de tarjeta de crédito.
     credit_card_ccv: Código de seguridad de la tarjeta de crédito.
@@ -111,7 +111,7 @@ SENSIBLES:
     geo_longitud: Coordenada de longitud.
     ip: Dirección IP.
 
-PÚBLICOS:
+PÚBLICOS: (Role user)
 
     user_name: Nombre de usuario.
     codigo_zip: Código postal.
@@ -125,7 +125,7 @@ PÚBLICOS:
     avatar: Enlace a la imagen de perfil.
     fec_birthday: Fecha de cumpleaños.
 
-SEMIPRIVADOS:
+SEMIPRIVADOS: (Role rrhh)
 
     fec_alta: Fecha de alta (podría variar dependiendo del contexto).
     id: Identificación.
