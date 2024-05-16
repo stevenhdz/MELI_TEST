@@ -1,5 +1,11 @@
 # Bienvenidos
 
+## Challenge - Seguridad Informática 2022 - Manejo de informacion
+
+Para cumplir con el objetivo de asegurar la información proporcionada por el endpoint https://62433a7fd126926d0c5d296b.mockapi.io/api/v1/usuarios y hacerla disponible para su consumo por distintos equipos y aplicaciones de la empresa, se implementarán medidas de seguridad adecuadas. Esto incluirá análisis de almacenamiento seguro de datos, selección de controles y protocolos de seguridad, y garantía de integridad y confidencialidad de la información. 
+
+Posteriormente, se proporcionará una explicación detallada de la arquitectura implementada para esta solución.
+
 # Solución al Problema de Seguridad en el Endpoint
 
 El endpoint presenta varias observaciones de seguridad que deben abordarse para garantizar la protección de los datos y la privacidad de los usuarios:
