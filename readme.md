@@ -1,4 +1,6 @@
-Bienvenido a mi solucion al problema.
+# Bienvenidos
+
+# Solución al Problema de Seguridad en el Endpoint
 
 
 El endpoint presenta varias observaciones de seguridad que deben abordarse para garantizar la protección de los datos y la privacidad de los usuarios:
