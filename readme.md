@@ -126,6 +126,8 @@ Cuando aparezca el mensaje indicado, indica que la subida se realizó correctame
 
 ![Alt text](assets/image12.png)
 
+![Alt text](assets/image22.png)
+
 Una vez que las imágenes de Docker hayan sido cargadas, el usuario podrá hacer uso del documento guía de consumo de las APIs. Es importante tener en cuenta que el archivo "data.http" contiene datos ficticios, creados exclusivamente con propósitos prácticos de laboratorio.
 
 Además, se debe asegurar que las imágenes de Docker estén disponibles en una ubicación adecuada y accesible para su utilización en el entorno correspondiente.
