@@ -14,6 +14,8 @@ Posteriormente, se proporcionará una explicación detallada de la arquitectura 
 
 Se implementaron medidas de seguridad para recibir y almacenar datos de manera segura. Se utilizó bcrypt para el hash de contraseñas y cryptography.fernet AES para la encriptación de datos sensibles en reposo. Además, se aplicó autenticación y autorización mediante JWT para controlar el acceso a los endpoints. Las contraseñas y otros datos confidenciales fueron encriptados para garantizar su seguridad. El token de autenticación tiene una caducidad de 5 minutos, y se establecieron controles para prevenir eliminaciones o actualizaciones no autorizadas. Se utilizan keys específicas para validar la información según el rol del usuario, asegurando que cada usuario acceda solo a los datos permitidos para su rol. Estas keys cambian constantemente para evitar ataques, y el método de encriptación es mayormente irreversible y verificable.
 
+Nota: tener presente que para fines de pruebas y laboratorio existe data fictisia y .env en el repositorio, en las buenas practicas no debe existir.
+
 ![Alt text](assets/image23.png)
 
 ## Criterios de Aceptación en Contraseña:
